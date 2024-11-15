@@ -1,6 +1,6 @@
 
   /// Pack color channels into a 32-bit unsigned integer.
-  function makeColor(r: number, g: number, b: number, a: number): number {
+  function makeColor(r, g, b, a){
     "inline";
     return (a << 24) | (b << 16) | (g << 8) | r;
   }
@@ -29,12 +29,12 @@
   // TODO: new Array(MAX_BUNNIES) causes a runtime assertion when assigning the elements of the array
   // const bunnies: Bunny[] = [];
   // const bunnies: Bunny[] = [];
-  let bunny_x: number = 0;
-  let bunny_y: number = 0;
-  let bunny_sx: number = 0;
-  let bunny_sy: number = 0;
+  let bunny_x = 0;
+  let bunny_y = 0;
+  let bunny_sx = 0;
+  let bunny_sy = 0;
   // const bunnies: Bunny[] = [];
-  let bunniesCount:number = 0;
+  let bunniesCount = 0;
 
   // Initialization
   const width = 640, height = 480;
@@ -42,10 +42,10 @@
   const wabbitDim_h = 20;
 
   // Create more bunnies on spacebar or mouse click
-  const createBunnies = (requested: number): void => {
+  const createBunnies = (requested) => {
     // const count:number = MAX_BUNNIES;
-    const count = (bunniesCount + requested <= MAX_BUNNIES) ? requested : MAX_BUNNIES - bunniesCount; 
-    for (let i:number = 0; i < count; i++)
+    const count:number = (bunniesCount + requested <= MAX_BUNNIES) ? requested : MAX_BUNNIES - bunniesCount; 
+    for (let i = 0; i < count; i++)
     {
       if (bunniesCount <= MAX_BUNNIES)
       {

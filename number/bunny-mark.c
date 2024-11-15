@@ -19,7 +19,7 @@
     int count = (*bunniesCount + requested <= MAX_BUNNIES) ? requested : MAX_BUNNIES - *bunniesCount; 
     for (int i = 0; i < count; i++)
     {
-        if (*bunniesCount < MAX_BUNNIES)
+        if (*bunniesCount <= MAX_BUNNIES)
         {
             *bunny_x = 50.0/2;
             *bunny_y = 88.0/2;
@@ -46,10 +46,15 @@ int main(void)
     const int screenWidth = 640;
     const int screenHeight = 480;
 
-    float *bunny_x = (float *)malloc(MAX_BUNNIES*sizeof(float));    // Bunnies array
-    float *bunny_y = (float *)malloc(MAX_BUNNIES*sizeof(float));    // Bunnies array
-    float *bunny_sx = (float *)malloc(MAX_BUNNIES*sizeof(float));    // Bunnies array
-    float *bunny_sy = (float *)malloc(MAX_BUNNIES*sizeof(float));    // Bunnies array
+    float bunny_x;
+    float bunny_y;
+    float bunny_sx;
+    float bunny_sy;
+								     //
+    // float *bunny_x = (float *)malloc(MAX_BUNNIES*sizeof(float));    // Bunnies array
+    // float *bunny_y = (float *)malloc(MAX_BUNNIES*sizeof(float));    // Bunnies array
+    // float *bunny_sx = (float *)malloc(MAX_BUNNIES*sizeof(float));    // Bunnies array
+    // float *bunny_sy = (float *)malloc(MAX_BUNNIES*sizeof(float));    // Bunnies array
     // Bunny *bunnies = (Bunny *)malloc(MAX_BUNNIES*sizeof(Bunny));    // Bunnies array
 
     int bunniesCount = 0;           // Bunnies counter
@@ -63,21 +68,29 @@ int main(void)
 
         // Update Input
         {
-            createBunnies(MAX_BUNNIES, &bunniesCount, bunny_x, bunny_y, bunny_sx, bunny_sy);
+            createBunnies(MAX_BUNNIES, &bunniesCount, &bunny_x, &bunny_y, &bunny_sx, &bunny_sy);
             // createBunnies(MAX_BUNNIES, &bunniesCount, bunnies);
         }
 
         // Update bunnies
-        for (int j = 0; j < 1000; j++) {
+        for (int j = 0; j < 10000; j++) {
         for (int i = 0; i < bunniesCount; i++)
         {
-            bunny_x[i] += bunny_sx[i];
-            bunny_y[i] += bunny_sy[i];
+            bunny_x += bunny_sx;
+            bunny_y += bunny_sy;
 
-            if (((bunny_x[i] + 20/2) > 20) ||
-                ((bunny_x[i] + 20/2) < 0)) bunny_sx[i] *= -1;
-            if (((bunny_y[i] + 20/2) > 40) ||
-                ((bunny_y[i] + 20/2 - 40) < 0)) bunny_sy[i] *= -1;
+            if (((bunny_x + 20/2) > 640) ||
+                ((bunny_x + 20/2) < 0)) bunny_sx *= -1;
+            if (((bunny_y + 20/2) > 480) ||
+                ((bunny_y + 20/2 - 40) < 0)) bunny_sy *= -1;
+
+            // bunny_x[i] += bunny_sx[i];
+            // bunny_y[i] += bunny_sy[i];
+
+            // if (((bunny_x[i] + 20/2) > 20) ||
+                // ((bunny_x[i] + 20/2) < 0)) bunny_sx[i] *= -1;
+            // if (((bunny_y[i] + 20/2) > 40) ||
+                // ((bunny_y[i] + 20/2 - 40) < 0)) bunny_sy[i] *= -1;
 
             // bunnies[i].position.x += bunnies[i].speed.x;
             // bunnies[i].position.y += bunnies[i].speed.y;
@@ -97,10 +110,10 @@ int main(void)
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    free(bunny_x);              // Unload bunnies data array
-    free(bunny_y);              // Unload bunnies data array
-    free(bunny_sx);              // Unload bunnies data array
-    free(bunny_sy);              // Unload bunnies data array
+    // free(bunny_x);              // Unload bunnies data array
+    // free(bunny_y);              // Unload bunnies data array
+    // free(bunny_sx);              // Unload bunnies data array
+    // free(bunny_sy);              // Unload bunnies data array
     // free(bunnies);              // Unload bunnies data array
 
     //--------------------------------------------------------------------------------------
