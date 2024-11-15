@@ -7,3 +7,4 @@ set(SHERMES ${HERMES_BINARY_DIR}/tools/shermes CACHE FILEPATH "shermes tool path
 
 add_subdirectory(number)
 add_subdirectory(number_array)
+add_subdirectory(class)

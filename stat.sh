@@ -13,6 +13,11 @@ commands=("./build/bin/number-array-calc" "./build/bin/number-array-calc-js" "no
 joined_args=$(IFS=,; echo "${commands[*]}")
 python3 stat.py "$joined_args"
 
+tsc ./class/bunny-mark.ts
+commands=("./build/bin/number-class-calc" "./build/bin/number-class-calc-js" "node ./class/bunny-mark.js"  "./build/bin/number-class-calc-c-d" "./build/bin/number-class-calc-c-O0" "./build/bin/number-class-calc-c-O1")
+joined_args=$(IFS=,; echo "${commands[*]}")
+python3 stat.py "$joined_args"
+
 # commands=("./build/bin/number-calc" "./build/bin/number-calc-js"  "./build/bin/number-calc-c-d" "./build/bin/number-calc-c-O0" "./build/bin/number-calc-c-O1")
 # 
 # times=()
