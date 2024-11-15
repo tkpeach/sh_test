@@ -1,9 +1,16 @@
 #!/bin/bash
 
+set -e
+set -x
+
 tsc ./number/bunny-mark.ts
 commands=("./build/bin/number-calc" "./build/bin/number-calc-js" "node ./number/bunny-mark.js"  "./build/bin/number-calc-c-d" "./build/bin/number-calc-c-O0" "./build/bin/number-calc-c-O1")
 joined_args=$(IFS=,; echo "${commands[*]}")
+python3 stat.py "$joined_args"
 
+tsc ./number_array/bunny-mark.ts
+commands=("./build/bin/number-array-calc" "./build/bin/number-array-calc-js" "node ./number_array/bunny-mark.js"  "./build/bin/number-array-calc-c-d" "./build/bin/number-array-calc-c-O0" "./build/bin/number-array-calc-c-O1")
+joined_args=$(IFS=,; echo "${commands[*]}")
 python3 stat.py "$joined_args"
 
 # commands=("./build/bin/number-calc" "./build/bin/number-calc-js"  "./build/bin/number-calc-c-d" "./build/bin/number-calc-c-O0" "./build/bin/number-calc-c-O1")
